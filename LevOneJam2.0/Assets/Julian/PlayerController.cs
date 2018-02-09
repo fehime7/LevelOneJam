@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    enum Monster { Monster1, Monster2, Monster3 };
-
     private float speed = 5;
     private float time = 0;
-    private Monster currentType = Monster.Monster1;
+    private monsterType currentType = monsterType.Monster1;
     private GameObject[] models;
 
     private void Start()
     {
-        models = new GameObject[System.Enum.GetValues(typeof(Monster)).Length];
+        models = new GameObject[System.Enum.GetValues(typeof(MonsterType)).Length];
 
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
@@ -39,13 +37,13 @@ public class PlayerController : MonoBehaviour {
 
         if (time < 5)
         {
-            Mutate(Monster.Monster1);
+            Mutate(MonsterType.Monster1);
         } else if (time >= 5 && time < 10)
         {
-            Mutate(Monster.Monster2);
+            Mutate(MonsterType.Monster2);
         } else if (time >= 10 && time < 15)
         {
-            Mutate(Monster.Monster3);
+            Mutate(MonsterType.Monster3);
         }
 
 
@@ -55,38 +53,38 @@ public class PlayerController : MonoBehaviour {
         transform.Translate(x, 0, z);
     }
 
-    void Mutate(Monster monsterType)
+    void Mutate(MonsterType monsterType)
     {
         if (monsterType != currentType)
         {
             switch (currentType)
             {
-                case Monster.Monster1:
+                case MonsterType.Monster1:
                     models[0].SetActive(false);
                     break;
 
-                case Monster.Monster2:
+                case MonsterType.Monster2:
                     models[1].SetActive(false);
                     break;
 
-                case Monster.Monster3:
+                case MonsterType.Monster3:
                     models[2].SetActive(false);
                     break;
             }
 
             switch (monsterType)
             {
-                case Monster.Monster1:
+                case MonsterType.Monster1:
                     speed = 1;
                     models[0].SetActive(true);
                     break;
 
-                case Monster.Monster2:
+                case MonsterType.Monster2:
                     speed = 5;
                     models[1].SetActive(true);
                     break;
 
-                case Monster.Monster3:
+                case MonsterType.Monster3:
                     speed = 10;
                     models[2].SetActive(true);
                     break;
