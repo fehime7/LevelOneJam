@@ -92,5 +92,7 @@ public class PlayerController : MonoBehaviour {
                     break;
             }
         }
+
+        currentType = monsterType;
     }
 }
