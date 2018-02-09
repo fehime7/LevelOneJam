@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 
     private float speed = 5;
     private float time = 0;
-    private monsterType currentType = monsterType.Monster1;
+    private MonsterType currentType = MonsterType.Monster1;
     private GameObject[] models;
 
     private void Start()
