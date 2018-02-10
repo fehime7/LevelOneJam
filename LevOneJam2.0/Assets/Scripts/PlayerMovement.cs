@@ -37,16 +37,14 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate () {
         Move();
         Turning();
-
-        if (Input.GetKeyDown("space"))
-            Ability();
     }
 
 	void Move () {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-
-        movement.Set (h, movement.y, v);
+        
+        movement.Set(h, 0, v);
+        
 		movement = movement.normalized * speed * Time.deltaTime;  //normalized value between 0 and 1
 
         playerRigidBody.MovePosition (transform.position + movement);
@@ -62,8 +60,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Mutate(MonsterType monsterType)
     {
-        Debug.Log(monsterType);
-
         if (monsterType != currentType)
         {
             switch (currentType)
@@ -101,15 +97,5 @@ public class PlayerMovement : MonoBehaviour
         }
 
         currentType = monsterType;
-    }
-
-    void Ability()
-    {
-        //Debug.Log("JUMP");
-
-        //playerRigidBody.AddForce(new Vector3(1000, 1000, 1000), ForceMode.Impulse);
-        //playerRigidBody.velocity += 100 * Vector3.up;
-
-        //movement.y += 1;
     }
 }

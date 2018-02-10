@@ -7,9 +7,12 @@ public class MonsterMovement : MonoBehaviour {
     public MonsterType mType;
 
     bool playerDetected = false;
+    Transform closestChar;
     Transform player;
     UnityEngine.AI.NavMeshAgent nav;
     private GameObject[] reactions;
+    private MonsterManager monManager;
+    private float detectDistance = 20;
 
 	float timer = 0.0f;
 	public float randomTimerDelay = 3.0f;
@@ -18,17 +21,15 @@ public class MonsterMovement : MonoBehaviour {
 	public int maxY = 25;
 	public int minY = -25;
 
-	void Awake()
+    void Start()
     {
         if (GameObject.FindGameObjectWithTag("Player"))
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
+            closestChar = player;
             nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
         }
-    }
 
-    void Start()
-    {
         reactions = new GameObject[2];
 
         for (int i = 0; i < gameObject.transform.childCount; i++)
@@ -46,16 +47,30 @@ public class MonsterMovement : MonoBehaviour {
                 }
             }
         }
+
+        monManager = (MonsterManager)FindObjectOfType(typeof(MonsterManager));
+        InvokeRepeating("UpdateClosestChar", 0, 1.0f);
     }
 
     void Update()
     {
-		if (player)
-		{
-			MonsterType playerType = player.GetComponent<PlayerMovement>().currentType;
-			float playerDistance = Vector3.Distance(gameObject.transform.position, player.position);
+        this.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0, 100000, 0), ForceMode.Impulse);
 
-			if (mType != playerType && playerDistance < 20)
+        if (closestChar)
+		{
+            MonsterType playerType = MonsterType.None;
+
+            if (closestChar.GetComponent<PlayerMovement>())
+            {
+                playerType = closestChar.GetComponent<PlayerMovement>().currentType;
+            } else if (closestChar.GetComponent<MonsterMovement>())
+            {
+                playerType = closestChar.GetComponent<MonsterMovement>().mType;
+            }
+
+			float playerDistance = Vector3.Distance(gameObject.transform.position, closestChar.position);
+
+			if (mType != playerType && playerDistance < detectDistance)
 			{
                 if (playerType == MonsterType.None)
                 {
@@ -100,6 +115,8 @@ public class MonsterMovement : MonoBehaviour {
 			else
 			{
 				playerDetected = false;
+                reactions[0].SetActive(false);
+                reactions[1].SetActive(false);
 
 				if (timer > randomTimerDelay)
 				{
@@ -128,7 +145,7 @@ public class MonsterMovement : MonoBehaviour {
 
     void Chase()
     {
-        nav.SetDestination(player.position);
+        nav.SetDestination(closestChar.position);
         
         if (!playerDetected)
         {
@@ -139,7 +156,7 @@ public class MonsterMovement : MonoBehaviour {
 
     void Avoid()
     {
-        Vector3 enemyDirection = 2 * gameObject.transform.position - player.position;
+        Vector3 enemyDirection = 2 * gameObject.transform.position - closestChar.position;
         nav.SetDestination(enemyDirection);
 
         if (!playerDetected)
@@ -151,12 +168,37 @@ public class MonsterMovement : MonoBehaviour {
 
     IEnumerator React(bool positive)
     {
-        if (positive) reactions[0].SetActive(true);
-        else reactions[1].SetActive(true);
+        if (positive)
+        {
+            reactions[0].SetActive(true);
+            reactions[1].SetActive(false);
+        }
+        else
+        {
+            reactions[1].SetActive(true);
+            reactions[0].SetActive(false);
+        }
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
 
-        if (positive) reactions[0].SetActive(false);
-        else reactions[1].SetActive(false);
+        //if (positive) reactions[0].SetActive(false);
+        //else reactions[1].SetActive(false);
+    }
+
+    void UpdateClosestChar()
+    {
+        float minDistance = Vector3.Distance(transform.position, player.position);
+        closestChar = player;
+
+        foreach(GameObject enemy in monManager.enemies)
+        {
+            float dist = Vector3.Distance(transform.position, enemy.transform.position);
+
+            if (dist < (minDistance - detectDistance))
+            {
+                minDistance = dist;
+                closestChar = enemy.transform;
+            }
+        }
     }
 }
