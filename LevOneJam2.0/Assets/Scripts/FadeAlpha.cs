@@ -4,13 +4,18 @@ using UnityEngine;
 
 	public class FadeAlpha : MonoBehaviour
 	{
-	private bool startedFading = false;
 
-	private void Start() {
-		//test  		StartCoroutine(FadeOut3D(this.transform, 0, true, 1));
-	}
+    private bool startedFading = false;
+    private MonsterManager monManager;
+
+    private void Start() {
+        //test  		StartCoroutine(FadeOut3D(this.transform, 0, true, 1));
+        monManager = (MonsterManager)FindObjectOfType(typeof(MonsterManager));
+    }
 
 	public void kill() {
+        monManager.enemies.Remove(this.gameObject);
+
 		if (gameObject.active && !startedFading)
 		{
 			startedFading = true;
