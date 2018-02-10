@@ -9,13 +9,18 @@ public class MonsterMovement1 : MonoBehaviour {
 
 		void Awake ()
 		{
-			player = GameObject.FindGameObjectWithTag ("Player").transform;
-			nav = GetComponent <UnityEngine.AI.NavMeshAgent> ();
+			if (GameObject.FindGameObjectWithTag("Player")){
+				player = GameObject.FindGameObjectWithTag("Player").transform;
+				nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
+			}
 		}
 
 
 		void Update ()
 		{
-			nav.SetDestination (player.position);
+		if (player)
+		{
+			nav.SetDestination(player.position);
+		}
 		}
 	}
