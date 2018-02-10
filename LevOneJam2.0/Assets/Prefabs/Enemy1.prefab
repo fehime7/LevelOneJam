@@ -38,8 +38,8 @@ GameObject:
   - component: {fileID: 4854246975040976}
   - component: {fileID: 54911226104892606}
   - component: {fileID: 195518917358658458}
-  - component: {fileID: 114675046634107564}
   - component: {fileID: 114728317363735456}
+  - component: {fileID: 114508996004237574}
   - component: {fileID: 114576157382129688}
   - component: {fileID: 136336507174829222}
   m_Layer: 0
@@ -306,6 +306,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!114 &114508996004237574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1293995558322088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b933b027212a954183806d9f0f7a414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBetweenAttacks: 0.5
+  attackDamage: 10
 --- !u!114 &114576157382129688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -323,19 +336,6 @@ MonoBehaviour:
   minX: -25
   maxY: 25
   minY: -25
---- !u!114 &114675046634107564
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1293995558322088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbf20322496594be98d4f6729bac685f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeBetweenAttacks: 0.5
-  attackDamage: 10
 --- !u!114 &114728317363735456
 MonoBehaviour:
   m_ObjectHideFlags: 1

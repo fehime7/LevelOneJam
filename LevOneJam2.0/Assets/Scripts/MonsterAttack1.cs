@@ -61,6 +61,7 @@ public class MonsterAttack1 : MonoBehaviour {
 				//later check with timer if in range to decrease the life
 				playerInRange = true;
 				Debug.Log("player should die");
+				playerHealth.TakeDamage (attackDamage);
 			}
 
 		}

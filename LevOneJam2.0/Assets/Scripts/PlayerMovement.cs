@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
 	Vector3 movement;
 	Rigidbody playerRigidBody;
 
-    private float speed = 5;
+    private float speed = 10;
     public MonsterType currentType = MonsterType.Monster1;
     private GameObject[] models;
 
@@ -32,36 +32,36 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-
-        models[0].SetActive(true);
-        Mutate(MonsterType.Monster1);
     }
 
     void FixedUpdate () {
-		float h = Input.GetAxisRaw ("Horizontal"); //-1, 0, 1 because it is raw
-		float v = Input.GetAxisRaw ("Vertical");
-
-		Move(h, v);
-		Turning();
+        Move();
+        Turning();
 
         if (Input.GetKeyDown("space"))
             Ability();
     }
 
-	void Move (float h, float v) {
-		movement.Set (h, movement.y, v);
+	void Move () {
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
 
-		movement = movement.normalized * speed * Time.deltaTime;  //normalized value between 0 and 1
+        movement.Set (h, movement.y, v);
 
-		playerRigidBody.MovePosition (transform.position + movement);
-	}
+		movement *= speed * Time.deltaTime;  //normalized value between 0 and 1
+
+        playerRigidBody.MovePosition (transform.position + movement);
+    }
 
 	void Turning () {
+        /*
         if (movement != Vector3.zero)
         {
             Quaternion targetRot = Quaternion.LookRotation(movement);
-            gameObject.transform.rotation = Quaternion.Slerp(targetRot, targetRot, Time.deltaTime * speed);
+            gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, targetRot, Time.deltaTime * 10000);
+            gameObject.transform.rotation = targetRot;
         }
+        */
     }
 
     public void Mutate(MonsterType monsterType)
@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
 
                 case MonsterType.Monster3:
                     speed = 9;
-                    models[2].SetActive(true);
+                    models[1].SetActive(true);
                     break;
             }
         }
