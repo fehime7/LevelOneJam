@@ -46,15 +46,15 @@ public class PlayerMovement : MonoBehaviour
     {
         time += Time.deltaTime;
 
-        if (time < 5)
+        if (time < 4)
         {
             Mutate(MonsterType.Monster1);
         }
-        else if (time >= 5 && time < 10)
+        else if (time >= 4 && time < 8)
         {
             Mutate(MonsterType.Monster2);
         }
-        else if (time >= 10 && time < 15)
+        else if (time >= 8 && time < 12)
         {
             Mutate(MonsterType.Monster3);
         }
