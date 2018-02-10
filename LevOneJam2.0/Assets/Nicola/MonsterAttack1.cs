@@ -62,7 +62,8 @@ public class MonsterAttack1 : MonoBehaviour {
 		void Attack ()
 		{
 			timer = 0f;
-
+		Debug.Log("Attack");
+			player.GetComponent<FadeAlpha>().kill();
 			//if(playerHealth.currentHealth > 0)
 			//{
 			//	playerHealth.TakeDamage (attackDamage);
