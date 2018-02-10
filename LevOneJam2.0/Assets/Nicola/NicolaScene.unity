@@ -152,6 +152,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 114671379024129210, guid: f7de5a8d7ac780944b76d554bf99eab1,
+        type: 2}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 2034234553}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f7de5a8d7ac780944b76d554bf99eab1, type: 2}
   m_IsPrefabParent: 0
@@ -363,7 +368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &317587198
 RectTransform:
   m_ObjectHideFlags: 0
@@ -626,7 +631,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 5, y: 0}
+  m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &799868423
@@ -1575,7 +1580,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 73, y: 85.754135}
+  m_AnchoredPosition: {x: 275.1242, y: 85.754135}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2034234553
@@ -1616,11 +1621,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1882284762}
   m_FillRect: {fileID: 317587198}
   m_HandleRect: {fileID: 1882284761}
-  m_Direction: 1
+  m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 5
+  m_MaxValue: 50
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 50
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
