@@ -9,46 +9,47 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1008222826882204}
+  m_RootGameObject: {fileID: 1987678908126148}
   m_IsPrefabParent: 1
---- !u!1 &1008222826882204
+--- !u!1 &1987678908126148
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4383608714041212}
-  - component: {fileID: 33936180962286292}
-  - component: {fileID: 23384391450602976}
-  - component: {fileID: 114604654972482608}
-  - component: {fileID: 136075000927169560}
+  - component: {fileID: 4831949654575850}
+  - component: {fileID: 33963410240168114}
+  - component: {fileID: 23902190320199894}
+  - component: {fileID: 114687863618811502}
+  - component: {fileID: 136008078967934980}
+  - component: {fileID: 114906482958516622}
   m_Layer: 0
-  m_Name: mask01
+  m_Name: mask03pickup
   m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4383608714041212
+--- !u!4 &4831949654575850
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1008222826882204}
+  m_GameObject: {fileID: 1987678908126148}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.18, y: 0, z: 0}
+  m_LocalPosition: {x: -4.46, y: 0, z: 0.016243057}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23384391450602976
+--- !u!23 &23902190320199894
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1008222826882204}
+  m_GameObject: {fileID: 1987678908126148}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -57,7 +58,8 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4bf99b83630f52c45908346850413c1c, type: 2}
+  - {fileID: 2100000, guid: f058f9425e9b5874cbcfe3cf78a87b8d, type: 2}
+  - {fileID: 2100000, guid: f4e3da2125c87044bad0a0a8a1e5d020, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,35 +79,46 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33936180962286292
+--- !u!33 &33963410240168114
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1008222826882204}
-  m_Mesh: {fileID: 4300000, guid: b609989a9c97ec243a2074f32798e593, type: 3}
---- !u!114 &114604654972482608
+  m_GameObject: {fileID: 1987678908126148}
+  m_Mesh: {fileID: 4300000, guid: aeb38ce141b02f04e925d31c11be3aa1, type: 3}
+--- !u!114 &114687863618811502
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1008222826882204}
+  m_GameObject: {fileID: 1987678908126148}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6534cbfc628bf024c8dedb215119f934, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mType: 0
---- !u!136 &136075000927169560
+  mType: 3
+--- !u!114 &114906482958516622
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987678908126148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a3b0bef437f47d4aa95feca85db9db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &136008078967934980
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1008222826882204}
+  m_GameObject: {fileID: 1987678908126148}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 79.67262
-  m_Height: 304.72107
+  m_Radius: 134.20074
+  m_Height: 227.35971
   m_Direction: 1
-  m_Center: {x: 0, y: 36.551796, z: 12.530418}
+  m_Center: {x: -0.000061035156, y: 55.303177, z: -4.610134}

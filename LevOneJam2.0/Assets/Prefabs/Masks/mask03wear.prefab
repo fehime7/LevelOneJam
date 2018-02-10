@@ -21,11 +21,10 @@ GameObject:
   - component: {fileID: 4872017862607828}
   - component: {fileID: 33271440920985414}
   - component: {fileID: 23604503362626048}
-  - component: {fileID: 114057277844200796}
   - component: {fileID: 136953746141099480}
   m_Layer: 0
-  m_Name: mask03
-  m_TagString: PickUp
+  m_Name: mask03wear
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,18 +84,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1863028218519046}
   m_Mesh: {fileID: 4300000, guid: aeb38ce141b02f04e925d31c11be3aa1, type: 3}
---- !u!114 &114057277844200796
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1863028218519046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6534cbfc628bf024c8dedb215119f934, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mType: 2
 --- !u!136 &136953746141099480
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -104,8 +91,8 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1863028218519046}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
+  m_IsTrigger: 1
+  m_Enabled: 0
   m_Radius: 134.20074
   m_Height: 227.35971
   m_Direction: 1

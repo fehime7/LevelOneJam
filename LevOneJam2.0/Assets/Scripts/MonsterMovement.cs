@@ -50,53 +50,64 @@ public class MonsterMovement : MonoBehaviour {
 
     void Update()
     {
-        MonsterType playerType = player.GetComponent<PlayerMovement>().currentType;
-        float playerDistance = Vector3.Distance(gameObject.transform.position, player.position);
+		if (player)
+		{
+			MonsterType playerType = player.GetComponent<PlayerMovement>().currentType;
+			float playerDistance = Vector3.Distance(gameObject.transform.position, player.position);
 
-        if (mType != playerType && playerDistance < 20)
-        {
-            switch (mType)
-            {
-                case MonsterType.Monster1:
-                    if (playerType == MonsterType.Monster3)
+			if (mType != playerType && playerDistance < 20)
+			{
+                if (playerType == MonsterType.None)
+                {
+                    Chase();
+                } else
+                {
+                    switch (mType)
                     {
-                        Chase();
+                        case MonsterType.Monster1:
+                            if (playerType == MonsterType.Monster3)
+                            {
+                                Chase();
+                            }
+                            else if (playerType == MonsterType.Monster2)
+                            {
+                                Avoid();
+                            }
+                            break;
+                        case MonsterType.Monster2:
+                            if (playerType == MonsterType.Monster1)
+                            {
+                                Chase();
+                            }
+                            else if (playerType == MonsterType.Monster3)
+                            {
+                                Avoid();
+                            }
+                            break;
+                        case MonsterType.Monster3:
+                            if (playerType == MonsterType.Monster2)
+                            {
+                                Chase();
+                            }
+                            else if (playerType == MonsterType.Monster1)
+                            {
+                                Avoid();
+                            }
+                            break;
                     }
-                    else if (playerType == MonsterType.Monster2)
-                    {
-                        Avoid();
-                    }
-                    break;
-                case MonsterType.Monster2:
-                    if (playerType == MonsterType.Monster1)
-                    {
-                        Chase();
-                    }
-                    else if (playerType == MonsterType.Monster3)
-                    {
-                        Avoid();
-                    }
-                    break;
-                case MonsterType.Monster3:
-                    if (playerType == MonsterType.Monster2)
-                    {
-                        Chase();
-                    }
-                    else if (playerType == MonsterType.Monster1)
-                    {
-                        Avoid();
-                    }
-                    break;
-            }
-        } else {
-            playerDetected = false;
+                }
+			}
+			else
+			{
+				playerDetected = false;
 
-            if (timer > randomTimerDelay)
-            {
-                nav.SetDestination(getRandomPosition());
-                timer = 0;
-            }
-        }
+				if (timer > randomTimerDelay)
+				{
+					nav.SetDestination(getRandomPosition());
+					timer = 0;
+				}
+			}
+		}
 
         timer += Time.deltaTime;
     }
