@@ -41,25 +41,6 @@ public class PlayerMovement : MonoBehaviour
         models[0].SetActive(true);
     }
 
-    //delete me
-    void Update()
-    {
-        time += Time.deltaTime;
-
-        if (time < 4)
-        {
-            Mutate(MonsterType.Monster1);
-        }
-        else if (time >= 4 && time < 8)
-        {
-            Mutate(MonsterType.Monster2);
-        }
-        else if (time >= 8 && time < 12)
-        {
-            Mutate(MonsterType.Monster3);
-        }
-    }
-
     void FixedUpdate () {
 		float h = Input.GetAxisRaw ("Horizontal"); //-1, 0, 1 because it is raw
 		float v = Input.GetAxisRaw ("Vertical");
@@ -90,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
 		}
 	}
 
-    void Mutate(MonsterType monsterType)
+    public void Mutate(MonsterType monsterType)
     {
         if (monsterType != currentType)
         {

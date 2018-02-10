@@ -7,6 +7,7 @@ public class MonsterMovement1 : MonoBehaviour {
 		UnityEngine.AI.NavMeshAgent nav;
 
 
+
 		void Awake ()
 		{
 			if (GameObject.FindGameObjectWithTag("Player")){
@@ -18,9 +19,12 @@ public class MonsterMovement1 : MonoBehaviour {
 
 		void Update ()
 		{
-		if (player)
-		{
-			nav.SetDestination(player.position);
-		}
+
+			if (player)
+			{
+				Vector3 enemyDirection = -player.position;
+				nav.SetDestination(player.position);
+				//nav.SetDestination (enemyDirection); // running away from player
+			}
 		}
 	}
