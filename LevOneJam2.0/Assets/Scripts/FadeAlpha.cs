@@ -14,7 +14,7 @@ using UnityEngine;
 		if (gameObject.active && !startedFading)
 		{
 			startedFading = true;
-			StartCoroutine(FadeOut3D(this.transform, 0, true, 1));
+			StartCoroutine(FadeOut3D(this.transform, 0, true, 0.001f));
 		}
 	}
 	public static IEnumerator FadeOut3D(Transform t, float targetAlpha, bool isVanish, float duration)
