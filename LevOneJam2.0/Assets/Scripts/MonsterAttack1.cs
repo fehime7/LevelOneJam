@@ -19,7 +19,12 @@ public class MonsterAttack1 : MonoBehaviour {
 		void Awake ()
 		{
 			player = GameObject.FindGameObjectWithTag ("Player");
-			playerHealth = player.GetComponent <PlayerHealth> ();
+		if (player)
+		{
+			playerHealth = player.GetComponent<PlayerHealth>();
+		}
+		else {
+		}
 			//enemyHealth = GetComponent<EnemyHealth>();
 			//anim = GetComponent <Animator> ();
 		}
