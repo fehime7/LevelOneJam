@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         float v = Input.GetAxis("Vertical");
 
         movement.Set (h, movement.y, v);
-		movement *= speed * Time.deltaTime;  //normalized value between 0 and 1
+		movement = movement.normalized * speed * Time.deltaTime;  //normalized value between 0 and 1
 
         playerRigidBody.MovePosition (transform.position + movement);
     }
