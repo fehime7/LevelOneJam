@@ -64,13 +64,13 @@ public class MonsterAttack1 : MonoBehaviour {
 		//comment if the monsters don't have to kill each other
 		else
 		{
-			MonsterType playerType = other.gameObject.GetComponent<MonsterMovement>().mType;
+			MonsterType playerType;
 			MonsterType myType = MonsterType.None;
 			myType = gameObject.GetComponent<MonsterMovement>().mType;
 
 			if (other.gameObject.GetComponent<MonsterMovement>())
 			{
-				
+				playerType = other.gameObject.GetComponent<MonsterMovement>().mType;
 				if (((myType == MonsterType.Monster1) && (playerType == MonsterType.Monster2)) || ((myType == MonsterType.Monster3) && (playerType == MonsterType.Monster1)) || ((myType == MonsterType.Monster2) && (playerType == MonsterType.Monster3)))
 				{
 					gameObject.GetComponent<FadeAlpha>().kill();
