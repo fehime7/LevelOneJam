@@ -129,7 +129,7 @@ public class MonsterAttack1 : MonoBehaviour {
 				Attack ();
 			}
 
-			if(playerHealth.currentHealth <= 0)
+			if(playerHealth && playerHealth.currentHealth <= 0)
 			{
 				player.GetComponent<FadeAlpha>().kill();
 				//anim.SetTrigger ("PlayerDead");
@@ -142,7 +142,7 @@ public class MonsterAttack1 : MonoBehaviour {
 			timer = 0f;
 			Debug.Log("Attack");
 			//player.GetComponent<FadeAlpha>().kill();
-			if(playerHealth.currentHealth > 0)
+			if (playerHealth && playerHealth.currentHealth > 0)
 			{
 				playerHealth.TakeDamage (attackDamage);
 			}
