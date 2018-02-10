@@ -454,6 +454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 100
   currentHealth: 0
+  healthSlider: {fileID: 0}
 --- !u!114 &114868623789830434
 MonoBehaviour:
   m_ObjectHideFlags: 1
