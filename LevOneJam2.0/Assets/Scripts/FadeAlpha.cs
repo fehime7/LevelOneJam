@@ -4,14 +4,16 @@ using UnityEngine;
 
 	public class FadeAlpha : MonoBehaviour
 	{
+	private bool startedFading = false;
 
 	private void Start() {
 		//test  		StartCoroutine(FadeOut3D(this.transform, 0, true, 1));
 	}
 
 	public void kill() {
-		if (gameObject.active)
+		if (gameObject.active && !startedFading)
 		{
+			startedFading = true;
 			StartCoroutine(FadeOut3D(this.transform, 0, true, 1));
 		}
 	}
