@@ -20,43 +20,47 @@ public class MonsterMovement : MonoBehaviour {
 
     void Update()
     {
-        MonsterType playerType = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().currentType;
+        MonsterType playerType = player.GetComponent<PlayerMovement>().currentType;
+        float playerDistance = Vector3.Distance(gameObject.transform.position, player.position);
 
-        switch (mType)
-        {
-            case MonsterType.Monster1:
-                if (playerType == MonsterType.Monster3)
-                {
-                    nav.SetDestination(player.position);
-                }
-                else if (playerType == MonsterType.Monster2)
-                {
-                    Vector3 enemyDirection = 2* gameObject.transform.position - player.position;
-                    nav.SetDestination(enemyDirection);
-                }
-                break;
-            case MonsterType.Monster2:
-                if (playerType == MonsterType.Monster1)
-                {
-                    nav.SetDestination(player.position);
-                }
-                else if (playerType == MonsterType.Monster3)
-                {
-                    Vector3 enemyDirection = 2 * gameObject.transform.position - player.position;
-                    nav.SetDestination(enemyDirection);
-                }
-                break;
-            case MonsterType.Monster3:
-                if (playerType == MonsterType.Monster2)
-                {
-                    nav.SetDestination(player.position);
-                }
-                else if (playerType == MonsterType.Monster1)
-                {
-                    Vector3 enemyDirection = 2 * gameObject.transform.position-player.position;
-                    nav.SetDestination(enemyDirection);
-                }
-                break;
+        if (mType != playerType && playerDistance < 20)
+        {            
+            switch (mType)
+            {
+                case MonsterType.Monster1:
+                    if (playerType == MonsterType.Monster3)
+                    {
+                        nav.SetDestination(player.position);
+                    }
+                    else if (playerType == MonsterType.Monster2)
+                    {
+                        Vector3 enemyDirection = 2 * gameObject.transform.position - player.position;
+                        nav.SetDestination(enemyDirection);
+                    }
+                    break;
+                case MonsterType.Monster2:
+                    if (playerType == MonsterType.Monster1)
+                    {
+                        nav.SetDestination(player.position);
+                    }
+                    else if (playerType == MonsterType.Monster3)
+                    {
+                        Vector3 enemyDirection = 2 * gameObject.transform.position - player.position;
+                        nav.SetDestination(enemyDirection);
+                    }
+                    break;
+                case MonsterType.Monster3:
+                    if (playerType == MonsterType.Monster2)
+                    {
+                        nav.SetDestination(player.position);
+                    }
+                    else if (playerType == MonsterType.Monster1)
+                    {
+                        Vector3 enemyDirection = 2 * gameObject.transform.position - player.position;
+                        nav.SetDestination(enemyDirection);
+                    }
+                    break;
+            }
         }
     }
 }
