@@ -2,14 +2,12 @@
 
 public class PlayerMovement : MonoBehaviour
 {
-	public float speed = 6f;
-
 	Vector3 movement;
 	Rigidbody playerRigidBody;
 	int floorMask; //collision with floor
 	float camRayLenght = 100f;  //??
-   
-    private float time = 0;
+
+    private float speed = 3;
     public MonsterType currentType = MonsterType.Monster1;
     private GameObject[] models;
 
@@ -39,18 +37,22 @@ public class PlayerMovement : MonoBehaviour
         }
 
         models[0].SetActive(true);
+        Mutate(MonsterType.Monster1);
     }
 
     void FixedUpdate () {
 		float h = Input.GetAxisRaw ("Horizontal"); //-1, 0, 1 because it is raw
 		float v = Input.GetAxisRaw ("Vertical");
 
-		Move (h, v);
-		Turning ();
-	}
+		Move(h, v);
+		Turning();
+
+        if (Input.GetKeyDown("space"))
+            Ability();
+    }
 
 	void Move (float h, float v) {
-		movement.Set (h, 0f, v);
+		movement.Set (h, movement.y, v);
 
 		movement = movement.normalized * speed * Time.deltaTime;  //normalized value between 0 and 1
 
@@ -60,7 +62,11 @@ public class PlayerMovement : MonoBehaviour
 	void Turning () {
         Quaternion targetRot = Quaternion.LookRotation(movement);
         //gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * speed);
-        gameObject.transform.rotation = targetRot;
+
+        if (targetRot != new Quaternion(0, 0, 0, 0))
+        {
+            gameObject.transform.rotation = targetRot;
+        }
     }
 
     public void Mutate(MonsterType monsterType)
@@ -85,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
             switch (monsterType)
             {
                 case MonsterType.Monster1:
-                    speed = 1;
+                    speed = 3;
                     models[0].SetActive(true);
                     break;
 
@@ -95,12 +101,22 @@ public class PlayerMovement : MonoBehaviour
                     break;
 
                 case MonsterType.Monster3:
-                    speed = 10;
+                    speed = 7;
                     models[2].SetActive(true);
                     break;
             }
         }
 
         currentType = monsterType;
+    }
+
+    void Ability()
+    {
+        //Debug.Log("JUMP");
+
+        //playerRigidBody.AddForce(new Vector3(1000, 1000, 1000), ForceMode.Impulse);
+        //playerRigidBody.velocity += 100 * Vector3.up;
+
+        //movement.y += 1;
     }
 }
