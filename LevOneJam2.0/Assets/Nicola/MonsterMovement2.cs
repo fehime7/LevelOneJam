@@ -15,6 +15,11 @@ public class MonsterMovement2 : MonoBehaviour {
 
 	void Update ()
 	{
-		nav.SetDestination (player.position);
+		Vector3 enemyDirection = -player.position;
+		if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().currentType == MonsterType.Monster1) {
+			nav.SetDestination(player.position);
+		} else if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().currentType == MonsterType.Monster3) {
+			nav.SetDestination (enemyDirection); // running away from player
+		}
 	}
 }
