@@ -20,10 +20,10 @@ using UnityEngine;
 	public static IEnumerator FadeOut3D(Transform t, float targetAlpha, bool isVanish, float duration)
 	{
 		Debug.Log("Fading");
-		Renderer sr = t.GetComponent<Renderer>();
+		Renderer sr = t.GetChild(0).GetComponent<Renderer>();
 		float diffAlpha = (targetAlpha - sr.material.color.a);
 
-		if (sr.transform.gameObject.name != "Player") {
+		if (sr.transform.gameObject.name != "avatar") {
 			Collider coll = t.GetComponent<Collider>();
 			coll.isTrigger = true;
 		}
@@ -41,12 +41,12 @@ using UnityEngine;
 		if (isVanish)
 		{
 			//sr.transform.gameObject.SetActive(false);
-			if (sr.transform.gameObject.name != "Player")
+			if (sr.transform.gameObject.name != "avatar")
 			{
-				Destroy(sr.transform.gameObject);
+				Destroy(t.gameObject);
 			}
 			else {
-				sr.transform.gameObject.SetActive(false);
+				t.gameObject.SetActive(false);
 			}
 		}
 	}
