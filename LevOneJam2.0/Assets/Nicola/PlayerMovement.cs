@@ -4,15 +4,12 @@ public class PlayerMovement : MonoBehaviour
 {
 	Vector3 movement;
 	Rigidbody playerRigidBody;
-	int floorMask; //collision with floor
-	float camRayLenght = 100f;  //??
 
     private float speed = 3;
     public MonsterType currentType = MonsterType.Monster1;
     private GameObject[] models;
 
     void Awake() {
-		floorMask = LayerMask.GetMask ("Floor");
 		playerRigidBody = GetComponent <Rigidbody> ();
 	}
 
@@ -60,11 +57,11 @@ public class PlayerMovement : MonoBehaviour
 	}
 
 	void Turning () {
-        Quaternion targetRot = Quaternion.LookRotation(movement);
-        //gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * speed);
-
-        if (targetRot != new Quaternion(0, 0, 0, 0))
+        if (movement != Vector3.zero)
         {
+            Quaternion targetRot = Quaternion.LookRotation(movement);
+            //gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * speed);
+
             gameObject.transform.rotation = targetRot;
         }
     }
