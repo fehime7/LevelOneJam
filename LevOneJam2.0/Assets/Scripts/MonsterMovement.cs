@@ -57,39 +57,45 @@ public class MonsterMovement : MonoBehaviour {
 
 			if (mType != playerType && playerDistance < 20)
 			{
-				switch (mType)
-				{
-					case MonsterType.Monster1:
-						if (playerType == MonsterType.Monster3)
-						{
-							Chase();
-						}
-						else if (playerType == MonsterType.Monster2)
-						{
-							Avoid();
-						}
-						break;
-					case MonsterType.Monster2:
-						if (playerType == MonsterType.Monster1)
-						{
-							Chase();
-						}
-						else if (playerType == MonsterType.Monster3)
-						{
-							Avoid();
-						}
-						break;
-					case MonsterType.Monster3:
-						if (playerType == MonsterType.Monster2)
-						{
-							Chase();
-						}
-						else if (playerType == MonsterType.Monster1)
-						{
-							Avoid();
-						}
-						break;
-				}
+                if (playerType == MonsterType.None)
+                {
+                    Chase();
+                } else
+                {
+                    switch (mType)
+                    {
+                        case MonsterType.Monster1:
+                            if (playerType == MonsterType.Monster3)
+                            {
+                                Chase();
+                            }
+                            else if (playerType == MonsterType.Monster2)
+                            {
+                                Avoid();
+                            }
+                            break;
+                        case MonsterType.Monster2:
+                            if (playerType == MonsterType.Monster1)
+                            {
+                                Chase();
+                            }
+                            else if (playerType == MonsterType.Monster3)
+                            {
+                                Avoid();
+                            }
+                            break;
+                        case MonsterType.Monster3:
+                            if (playerType == MonsterType.Monster2)
+                            {
+                                Chase();
+                            }
+                            else if (playerType == MonsterType.Monster1)
+                            {
+                                Avoid();
+                            }
+                            break;
+                    }
+                }
 			}
 			else
 			{
