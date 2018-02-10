@@ -36,10 +36,10 @@ public class MaskController : MonoBehaviour
 	{
 
 		int spawnPointIndex = Random.Range (0, spawnPoints.Length);
-		maskIndex = Random.Range (0, mask.Length);
+		//maskIndex = Random.Range (0, mask.Length);
 
-
-		Instantiate (mask[maskIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+		//Instantiate (mask[maskIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+		Instantiate(mask[spawnPointIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
 	}
 
 	void DeSpawn  () 
