@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114557019833390296}
   - component: {fileID: 195050038142399730}
   - component: {fileID: 114507301243252402}
+  - component: {fileID: 114518292674941456}
   m_Layer: 0
   m_Name: Enemy3
   m_TagString: Untagged
@@ -127,6 +128,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 0.5
   attackDamage: 10
+--- !u!114 &114518292674941456
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1313706686102286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d228a5733c7edc44c99c2dfd55a68792, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114557019833390296
 MonoBehaviour:
   m_ObjectHideFlags: 1

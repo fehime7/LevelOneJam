@@ -21,14 +21,26 @@ public class MonsterAttack1 : MonoBehaviour {
 			player = GameObject.FindGameObjectWithTag ("Player");
 			//playerHealth = player.GetComponent <PlayerHealth> ();
 			//enemyHealth = GetComponent<EnemyHealth>();
-			anim = GetComponent <Animator> ();
+			//anim = GetComponent <Animator> ();
 		}
 
 
-		void OnTriggerEnter (Collider other)
+
+
+	void OnCollisionEnter(Collision other)
+	{
+		if (other.gameObject == player)
+		{
+			Debug.Log("player in range");
+			playerInRange = true;
+		}
+	}
+
+	void OnTriggerEnter (Collider other)
 		{
 			if(other.gameObject == player)
 			{
+				Debug.Log("player in range");
 				playerInRange = true;
 			}
 		}
@@ -62,7 +74,7 @@ public class MonsterAttack1 : MonoBehaviour {
 		void Attack ()
 		{
 			timer = 0f;
-		Debug.Log("Attack");
+			Debug.Log("Attack");
 			player.GetComponent<FadeAlpha>().kill();
 			//if(playerHealth.currentHealth > 0)
 			//{

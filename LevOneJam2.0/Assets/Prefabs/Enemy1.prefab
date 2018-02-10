@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114286162275022938}
   - component: {fileID: 195518917358658458}
   - component: {fileID: 114675046634107564}
+  - component: {fileID: 114728317363735456}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Untagged
@@ -138,6 +139,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 0.5
   attackDamage: 10
+--- !u!114 &114728317363735456
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1293995558322088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d228a5733c7edc44c99c2dfd55a68792, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!195 &195518917358658458
 NavMeshAgent:
   m_ObjectHideFlags: 1

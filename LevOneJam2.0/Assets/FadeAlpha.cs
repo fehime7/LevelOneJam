@@ -10,7 +10,10 @@ using UnityEngine;
 	}
 
 	public void kill() {
-		StartCoroutine(FadeOut3D(this.transform, 0, true, 1));
+		if (gameObject.active)
+		{
+			StartCoroutine(FadeOut3D(this.transform, 0, true, 1));
+		}
 	}
 	public static IEnumerator FadeOut3D(Transform t, float targetAlpha, bool isVanish, float duration)
 	{
