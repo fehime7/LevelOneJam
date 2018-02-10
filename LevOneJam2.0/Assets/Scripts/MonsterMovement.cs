@@ -187,18 +187,20 @@ public class MonsterMovement : MonoBehaviour {
 
     void UpdateClosestChar()
     {
-        float minDistance = Vector3.Distance(transform.position, player.position);
-        closestChar = player;
+		if (player)
+		{
+			float minDistance = Vector3.Distance(transform.position, player.position);
+			closestChar = player;
+			foreach (GameObject enemy in monManager.enemies)
+			{
+				float dist = Vector3.Distance(transform.position, enemy.transform.position);
 
-        foreach(GameObject enemy in monManager.enemies)
-        {
-            float dist = Vector3.Distance(transform.position, enemy.transform.position);
-
-            if (dist < (minDistance - detectDistance))
-            {
-                minDistance = dist;
-                closestChar = enemy.transform;
-            }
-        }
+				if (dist < (minDistance - detectDistance))
+				{
+					minDistance = dist;
+					closestChar = enemy.transform;
+				}
+			}
+		}
     }
 }
