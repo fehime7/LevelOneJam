@@ -6,14 +6,11 @@ public class PickupController : MonoBehaviour {
 
     public MonsterType mType;
 
-    void OnCollisionEnter(Collision col)
+    void OnTriggerEnter(Collider col)
     {
-        Debug.Log(col.gameObject.name);
-
         if (col.gameObject.name == "Player")
         {
-			Debug.Log("puickUp mask");
-			col.gameObject.GetComponent<PlayerMovement>().Mutate(mType);
+            col.gameObject.GetComponent<PlayerMovement>().Mutate(mType);
             Destroy(this.gameObject);
         }
     }
