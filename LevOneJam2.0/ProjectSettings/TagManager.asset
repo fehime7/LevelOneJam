@@ -7,6 +7,7 @@ TagManager:
   - Spawning1
   - Spawning2
   - Spawning3
+  - PickUp
   layers:
   - Default
   - TransparentFX
