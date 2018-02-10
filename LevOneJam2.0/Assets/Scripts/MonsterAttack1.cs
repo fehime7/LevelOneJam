@@ -36,51 +36,13 @@ public class MonsterAttack1 : MonoBehaviour {
 	{
 		if (other.gameObject == player)
 		{
-			Debug.Log("player in range");
-
+			Debug.Log("collision detected");
 
 			MonsterType playerType = other.gameObject.GetComponent<PlayerMovement>().currentType;
 			MonsterType myType = MonsterType.Monster1;
-			if (gameObject.name == "Enemy1(Clone)")
-			{
-				myType = MonsterType.Monster1;
-			}
-			else if (gameObject.name == "Enemy2(Clone)")
-			{
-				myType = MonsterType.Monster2;
-			}
-			else if (gameObject.name == "Enemy3(Clone)")
-			{
-				myType = MonsterType.Monster3;
-			}
-			//when the monster should die
-			if (((myType == MonsterType.Monster1) && (playerType == MonsterType.Monster2)) || ((myType == MonsterType.Monster3) && (playerType == MonsterType.Monster1)) || ((myType == MonsterType.Monster2) && (playerType == MonsterType.Monster3)))
-			{
-				gameObject.GetComponent<FadeAlpha>().kill();
-				Debug.Log("monster should die");
-				//UPDATE SCORE MANAGER
-			}
-			//when the player should die
-			else if (((myType == MonsterType.Monster2) && (playerType == MonsterType.Monster1)) || ((myType == MonsterType.Monster1) && (playerType == MonsterType.Monster3)) || ((myType == MonsterType.Monster3) && (playerType == MonsterType.Monster2)))
-			{
-				//later check with timer if in range to decrease the life
-				playerInRange = true;
-				Debug.Log("player should die");
-				playerHealth.TakeDamage (attackDamage);
-			}
 
-		}
-	}
+			Debug.Log(playerType + "   " + myType);
 
-	void OnTriggerEnter (Collider other)
-	{
-		if(other.gameObject == player)
-		{
-			Debug.Log("player in range");
-			
-
-			MonsterType playerType = other.GetComponent<PlayerMovement>().currentType;
-			MonsterType myType = MonsterType.Monster1;
 			if (gameObject.name == "Enemy1")
 			{
 				myType = MonsterType.Monster1;
@@ -93,48 +55,51 @@ public class MonsterAttack1 : MonoBehaviour {
 			{
 				myType = MonsterType.Monster3;
 			}
+
 			//when the monster should die
-			if (((myType == MonsterType.Monster1) && (playerType == MonsterType.Monster2)) || ((myType == MonsterType.Monster3) && (playerType == MonsterType.Monster1)) || ((myType == MonsterType.Monster2) && (playerType == MonsterType.Monster3)))
+			if (myType != playerType)
 			{
-				gameObject.GetComponent<FadeAlpha>().kill();
-				Debug.Log("monster should die");
+				if (((myType == MonsterType.Monster1) && (playerType == MonsterType.Monster2)) || ((myType == MonsterType.Monster3) && (playerType == MonsterType.Monster1)) || ((myType == MonsterType.Monster2) && (playerType == MonsterType.Monster3)))
+				{
+					gameObject.GetComponent<FadeAlpha>().kill();
+					Debug.Log("monster should die");
+				}
+				//when the player should die
+				else /*if (((myType == MonsterType.Monster2) && (playerType == MonsterType.Monster1)) || ((myType == MonsterType.Monster1) && (playerType == MonsterType.Monster3)) || ((myType == MonsterType.Monster3) && (playerType == MonsterType.Monster2)))*/
+				{
+					//later check with timer if in range to decrease the life
+					playerInRange = true;
+					Debug.Log("player should die");
+				}
 			}
-			//when the player should die
-			else if (((myType == MonsterType.Monster2) && (playerType == MonsterType.Monster1)) || ((myType == MonsterType.Monster1) && (playerType == MonsterType.Monster3)) || ((myType == MonsterType.Monster3) && (playerType == MonsterType.Monster2)))
-			{
-				//later check with timer if in range to decrease the life
-				playerInRange = true;
-				Debug.Log("player should die");
-			}
-			
+
 		}
 	}
 
 
-		void OnTriggerExit (Collider other)
+	void OnCollisionExit(Collision other)
+	{
+		if (other.gameObject == player) {
+			playerInRange = false;
+		}
+	}
+
+
+	void Update ()
+	{
+		timer += Time.deltaTime;
+
+		if(timer >= timeBetweenAttacks && playerInRange/* && enemyHealth.currentHealth > 0*/)
 		{
-			if(other.gameObject == player)
-			{
-				playerInRange = false;
-			}
+			Attack ();
 		}
 
-
-		void Update ()
+		if(playerHealth && playerHealth.currentHealth <= 0)
 		{
-			timer += Time.deltaTime;
-
-			if(timer >= timeBetweenAttacks && playerInRange/* && enemyHealth.currentHealth > 0*/)
-			{
-				Attack ();
-			}
-
-			if(playerHealth && playerHealth.currentHealth <= 0)
-			{
-				player.GetComponent<FadeAlpha>().kill();
-				//anim.SetTrigger ("PlayerDead");
-			}
+			player.GetComponent<FadeAlpha>().kill();
+			//anim.SetTrigger ("PlayerDead");
 		}
+	}
 
 
 		void Attack ()
