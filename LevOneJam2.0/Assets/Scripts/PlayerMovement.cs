@@ -6,8 +6,8 @@ public class PlayerMovement : MonoBehaviour
 	Rigidbody playerRigidBody;
 
     private float speed = 10;
-    public MonsterType currentType = MonsterType.Monster1;
-    private GameObject[] models;
+    public MonsterType currentType = MonsterType.None;
+    private GameObject[] masks;
 
     void Awake() {
 		playerRigidBody = GetComponent <Rigidbody> ();
@@ -15,19 +15,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        models = new GameObject[System.Enum.GetValues(typeof(MonsterType)).Length];
+        masks = new GameObject[System.Enum.GetValues(typeof(MonsterType)).Length-1];
 
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
-            Transform modelsTrans = gameObject.transform.GetChild(i).transform;
+            Transform masksTrans = gameObject.transform.GetChild(i).transform;
 
-            if (modelsTrans.name == "Models")
+            if (masksTrans.name == "Models")
             {
-                for (int j = 0; j < modelsTrans.childCount; j++)
+                for (int j = 0; j < masksTrans.childCount; j++)
                 {
-                    GameObject modelObj = modelsTrans.GetChild(j).gameObject;
+                    GameObject modelObj = masksTrans.GetChild(j).gameObject;
 
-                    models[j] = modelObj;
+                    masks[j] = modelObj;
                     modelObj.SetActive(false);
                 }
             }
@@ -62,20 +62,22 @@ public class PlayerMovement : MonoBehaviour
 
     public void Mutate(MonsterType monsterType)
     {
+        Debug.Log(monsterType);
+
         if (monsterType != currentType)
         {
             switch (currentType)
             {
                 case MonsterType.Monster1:
-                    models[0].SetActive(false);
+                    masks[0].SetActive(false);
                     break;
 
                 case MonsterType.Monster2:
-                    models[1].SetActive(false);
+                    masks[1].SetActive(false);
                     break;
 
                 case MonsterType.Monster3:
-                    models[2].SetActive(false);
+                    masks[2].SetActive(false);
                     break;
             }
 
@@ -83,17 +85,17 @@ public class PlayerMovement : MonoBehaviour
             {
                 case MonsterType.Monster1:
                     speed = 5;
-                    models[0].SetActive(true);
+                    masks[0].SetActive(true);
                     break;
 
                 case MonsterType.Monster2:
                     speed = 7;
-                    models[1].SetActive(true);
+                    masks[1].SetActive(true);
                     break;
 
                 case MonsterType.Monster3:
                     speed = 9;
-                    models[1].SetActive(true);
+                    masks[2].SetActive(true);
                     break;
             }
         }
