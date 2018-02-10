@@ -11,7 +11,14 @@ public class MonsterMovement : MonoBehaviour {
     UnityEngine.AI.NavMeshAgent nav;
     private GameObject[] reactions;
 
-    void Awake()
+	float timer = 0.0f;
+	public float randomTimerDelay = 3.0f;
+	public int maxX = 25;
+	public int minX = -25;
+	public int maxY = 25;
+	public int minY = -25;
+
+	void Awake()
     {
         if (GameObject.FindGameObjectWithTag("Player"))
         {
@@ -46,49 +53,67 @@ public class MonsterMovement : MonoBehaviour {
         MonsterType playerType = player.GetComponent<PlayerMovement>().currentType;
         float playerDistance = Vector3.Distance(gameObject.transform.position, player.position);
 
-        if (mType != playerType)
+        if (mType != playerType && playerDistance < 20)
         {
-            if (playerDistance < 20)
+            switch (mType)
             {
-                switch (mType)
-                {
-                    case MonsterType.Monster1:
-                        if (playerType == MonsterType.Monster3)
-                        {
-                            Chase();
-                        }
-                        else if (playerType == MonsterType.Monster2)
-                        {
-                            Avoid();
-                        }
-                        break;
-                    case MonsterType.Monster2:
-                        if (playerType == MonsterType.Monster1)
-                        {
-                            Chase();
-                        }
-                        else if (playerType == MonsterType.Monster3)
-                        {
-                            Avoid();
-                        }
-                        break;
-                    case MonsterType.Monster3:
-                        if (playerType == MonsterType.Monster2)
-                        {
-                            Chase();
-                        }
-                        else if (playerType == MonsterType.Monster1)
-                        {
-                            Avoid();
-                        }
-                        break;
-                }
-            } else
+                case MonsterType.Monster1:
+                    if (playerType == MonsterType.Monster3)
+                    {
+                        Chase();
+                    }
+                    else if (playerType == MonsterType.Monster2)
+                    {
+                        Avoid();
+                    }
+                    break;
+                case MonsterType.Monster2:
+                    if (playerType == MonsterType.Monster1)
+                    {
+                        Chase();
+                    }
+                    else if (playerType == MonsterType.Monster3)
+                    {
+                        Avoid();
+                    }
+                    break;
+                case MonsterType.Monster3:
+                    if (playerType == MonsterType.Monster2)
+                    {
+                        Chase();
+                    }
+                    else if (playerType == MonsterType.Monster1)
+                    {
+                        Avoid();
+                    }
+                    break;
+            }
+        } else {
+            playerDetected = false;
+
+            if (timer > randomTimerDelay)
             {
-                playerDetected = false;
+                nav.SetDestination(getRandomPosition());
+                timer = 0;
             }
         }
+
+        timer += Time.deltaTime;
     }
+
+	private Vector3 getRandomPosition() {
+		float x;
+		float y;
+		float z;
+		Vector3 pos;
+
+		x = Random.Range(minX, maxX);
+		y = 5;
+		z = Random.Range(minY, maxY);
+		pos = new Vector3(x, y, z);
+
+		return pos;
+	}    
 
     void Chase()
     {
