@@ -21,6 +21,10 @@ using UnityEngine;
 		Renderer sr = t.GetComponent<Renderer>();
 		float diffAlpha = (targetAlpha - sr.material.color.a);
 
+		if (sr.transform.gameObject.name != "Player") {
+			Collider coll = t.GetComponent<Collider>();
+			coll.isTrigger = true;
+		}
 		float counter = 0;
 		while (counter < duration)
 		{
