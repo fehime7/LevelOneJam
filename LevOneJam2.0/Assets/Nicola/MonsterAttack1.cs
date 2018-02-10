@@ -53,6 +53,7 @@ public class MonsterAttack1 : MonoBehaviour {
 			{
 				gameObject.GetComponent<FadeAlpha>().kill();
 				Debug.Log("monster should die");
+				//UPDATE SCORE MANAGER
 			}
 			//when the player should die
 			else if (((myType == MonsterType.Monster2) && (playerType == MonsterType.Monster1)) || ((myType == MonsterType.Monster1) && (playerType == MonsterType.Monster3)) || ((myType == MonsterType.Monster3) && (playerType == MonsterType.Monster2)))
