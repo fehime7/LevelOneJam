@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
 	Vector3 movement;
 	Rigidbody playerRigidBody;
 
-    private float speed = 3;
+    private float speed = 5;
     public MonsterType currentType = MonsterType.Monster1;
     private GameObject[] models;
 
@@ -60,9 +60,7 @@ public class PlayerMovement : MonoBehaviour
         if (movement != Vector3.zero)
         {
             Quaternion targetRot = Quaternion.LookRotation(movement);
-            //gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * speed);
-
-            gameObject.transform.rotation = targetRot;
+            gameObject.transform.rotation = Quaternion.Slerp(targetRot, targetRot, Time.deltaTime * speed);
         }
     }
 
@@ -88,17 +86,17 @@ public class PlayerMovement : MonoBehaviour
             switch (monsterType)
             {
                 case MonsterType.Monster1:
-                    speed = 3;
+                    speed = 5;
                     models[0].SetActive(true);
                     break;
 
                 case MonsterType.Monster2:
-                    speed = 5;
+                    speed = 7;
                     models[1].SetActive(true);
                     break;
 
                 case MonsterType.Monster3:
-                    speed = 7;
+                    speed = 9;
                     models[2].SetActive(true);
                     break;
             }
