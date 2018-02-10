@@ -58,18 +58,10 @@ public class PlayerMovement : MonoBehaviour
 	}
 
 	void Turning () {
-		Ray camRay = Camera.main.ScreenPointToRay (Input.mousePosition); //array that we cast from the camera into the scene //ray raggio al centro della camera verso la scena 
-
-		RaycastHit floorHit; //to get the information back from the RayCast
-
-		if (Physics.Raycast (camRay, out floorHit, camRayLenght, floorMask)){
-			Vector3 playerToMouse = floorHit.point - transform.position;
-			playerToMouse.y = 0f;
-
-			Quaternion newRotation = Quaternion.LookRotation (playerToMouse); //lookRotation '??
-			playerRigidBody.MoveRotation(newRotation);
-		}
-	}
+        Quaternion targetRot = Quaternion.LookRotation(movement);
+        //gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * speed);
+        gameObject.transform.rotation = targetRot;
+    }
 
     public void Mutate(MonsterType monsterType)
     {
