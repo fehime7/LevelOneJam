@@ -10,7 +10,7 @@ public class MonsterAttack1 : MonoBehaviour {
 
 		Animator anim;
 		GameObject player;
-//		PlayerHealth playerHealth;
+		PlayerHealth playerHealth;
 		//EnemyHealth enemyHealth;
 		bool playerInRange;
 		float timer;
@@ -19,7 +19,7 @@ public class MonsterAttack1 : MonoBehaviour {
 		void Awake ()
 		{
 			player = GameObject.FindGameObjectWithTag ("Player");
-			//playerHealth = player.GetComponent <PlayerHealth> ();
+			playerHealth = player.GetComponent <PlayerHealth> ();
 			//enemyHealth = GetComponent<EnemyHealth>();
 			//anim = GetComponent <Animator> ();
 		}
@@ -122,10 +122,11 @@ public class MonsterAttack1 : MonoBehaviour {
 				Attack ();
 			}
 
-			//if(playerHealth.currentHealth <= 0)
-			//{
-			//	anim.SetTrigger ("PlayerDead");
-			//}
+			if(playerHealth.currentHealth <= 0)
+			{
+				player.GetComponent<FadeAlpha>().kill();
+				//anim.SetTrigger ("PlayerDead");
+			}
 		}
 
 
@@ -133,11 +134,11 @@ public class MonsterAttack1 : MonoBehaviour {
 		{
 			timer = 0f;
 			Debug.Log("Attack");
-			player.GetComponent<FadeAlpha>().kill();
-			//if(playerHealth.currentHealth > 0)
-			//{
-			//	playerHealth.TakeDamage (attackDamage);
-			//}
+			//player.GetComponent<FadeAlpha>().kill();
+			if(playerHealth.currentHealth > 0)
+			{
+				playerHealth.TakeDamage (attackDamage);
+			}
 		}
 	}
 

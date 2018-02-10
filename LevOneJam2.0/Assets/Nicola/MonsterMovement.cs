@@ -26,83 +26,87 @@ public class MonsterMovement : MonoBehaviour {
 
     void Update()
     {
-		MonsterType playerType = player.GetComponent<PlayerMovement>().currentType;
-		float playerDistance = Vector3.Distance(gameObject.transform.position, player.position);
+		if (player)
+		{
+			MonsterType playerType = player.GetComponent<PlayerMovement>().currentType;
+			float playerDistance = Vector3.Distance(gameObject.transform.position, player.position);
 
-		if (mType != playerType && playerDistance < 20)
-		{
-			switch (mType)
+			if (mType != playerType && playerDistance < 20)
 			{
-				case MonsterType.Monster1:
-					if (playerType == MonsterType.Monster3)
-					{
-						nav.SetDestination(player.position);
-					}
-					else if (playerType == MonsterType.Monster2)
-					{
-						Vector3 enemyDirection = 2 * gameObject.transform.position - player.position;
-						nav.SetDestination(enemyDirection);
-					}
-					//if nor chasing neither escaping
-					else {
-						if (timer > randomTimerDelay)
+				switch (mType)
+				{
+					case MonsterType.Monster1:
+						if (playerType == MonsterType.Monster3)
 						{
-							nav.SetDestination(getRandomPosition());
-							timer = 0;
+							nav.SetDestination(player.position);
 						}
-					}
-					break;
-				case MonsterType.Monster2:
-					if (playerType == MonsterType.Monster1)
-					{
-						nav.SetDestination(player.position);
-					}
-					else if (playerType == MonsterType.Monster3)
-					{
-						Vector3 enemyDirection = 2 * gameObject.transform.position - player.position;
-						nav.SetDestination(enemyDirection);
-					}
-					//if nor chasing neither escaping
-					else
-					{
-						if (timer > randomTimerDelay)
+						else if (playerType == MonsterType.Monster2)
 						{
-							nav.SetDestination(getRandomPosition());
-							timer = 0;
+							Vector3 enemyDirection = 2 * gameObject.transform.position - player.position;
+							nav.SetDestination(enemyDirection);
 						}
-					}
-					break;
-				case MonsterType.Monster3:
-					if (playerType == MonsterType.Monster2)
-					{
-						nav.SetDestination(player.position);
-					}
-					else if (playerType == MonsterType.Monster1)
-					{
-						Vector3 enemyDirection = 2 * gameObject.transform.position - player.position;
-						nav.SetDestination(enemyDirection);
-					}
-					//if nor chasing neither escaping
-					else
-					{
-						if (timer > randomTimerDelay)
+						//if nor chasing neither escaping
+						else
 						{
-							nav.SetDestination(getRandomPosition());
-							timer = 0;
+							if (timer > randomTimerDelay)
+							{
+								nav.SetDestination(getRandomPosition());
+								timer = 0;
+							}
 						}
-					}
-					break;
+						break;
+					case MonsterType.Monster2:
+						if (playerType == MonsterType.Monster1)
+						{
+							nav.SetDestination(player.position);
+						}
+						else if (playerType == MonsterType.Monster3)
+						{
+							Vector3 enemyDirection = 2 * gameObject.transform.position - player.position;
+							nav.SetDestination(enemyDirection);
+						}
+						//if nor chasing neither escaping
+						else
+						{
+							if (timer > randomTimerDelay)
+							{
+								nav.SetDestination(getRandomPosition());
+								timer = 0;
+							}
+						}
+						break;
+					case MonsterType.Monster3:
+						if (playerType == MonsterType.Monster2)
+						{
+							nav.SetDestination(player.position);
+						}
+						else if (playerType == MonsterType.Monster1)
+						{
+							Vector3 enemyDirection = 2 * gameObject.transform.position - player.position;
+							nav.SetDestination(enemyDirection);
+						}
+						//if nor chasing neither escaping
+						else
+						{
+							if (timer > randomTimerDelay)
+							{
+								nav.SetDestination(getRandomPosition());
+								timer = 0;
+							}
+						}
+						break;
+				}
 			}
-        }
-		else
-		{
-			if (timer > randomTimerDelay)
+			else
 			{
-				nav.SetDestination(getRandomPosition());
-				timer = 0;
+				if (timer > randomTimerDelay)
+				{
+					nav.SetDestination(getRandomPosition());
+					timer = 0;
+				}
 			}
+			timer += Time.deltaTime;
 		}
-		timer += Time.deltaTime;
 	}
 
 	private Vector3 getRandomPosition() {
