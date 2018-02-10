@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21da56e0085cc841b9b4a361a216e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mType: 2
+  mType: 3
   randomTimerDelay: 3
   maxX: 25
   minX: -25
