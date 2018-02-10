@@ -13,6 +13,13 @@ using UnityEngine;
         monManager = (MonsterManager)FindObjectOfType(typeof(MonsterManager));
     }
 
+	void Update()
+	{
+		if(Input.GetKeyDown(KeyCode.Return))
+			Application.LoadLevel(0); //or whatever number your scene is
+
+	}
+
 	public void kill() {
         monManager.enemies.Remove(this.gameObject);
 
