@@ -56,8 +56,10 @@ public class MaskController : MonoBehaviour
 		*/
 
 		for(int i=0 ; i<masksToRemove.Length; i++){
-
-			Destroy (masksToRemove [i]);
+			if (masksToRemove[i])
+			{
+				Destroy(masksToRemove[i]);
+			}
 		}
 	}
 }

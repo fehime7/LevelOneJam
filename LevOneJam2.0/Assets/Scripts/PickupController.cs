@@ -14,7 +14,10 @@ public class PickupController : MonoBehaviour {
         {
 			Debug.Log("puickUp mask");
 			col.gameObject.GetComponent<PlayerMovement>().Mutate(mType);
-            Destroy(this.gameObject);
+			//this.gameObject.tag = "PickedUp";
+
+			//Destroy(this.gameObject);
+			this.gameObject.SetActive(false);
         }
     }
 }
