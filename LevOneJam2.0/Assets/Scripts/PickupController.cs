@@ -15,8 +15,8 @@ public class PickupController : MonoBehaviour {
 			col.gameObject.GetComponent<PlayerMovement>().Mutate(mType);
 			//this.gameObject.tag = "PickedUp";
 
-			//Destroy(this.gameObject);
-			this.gameObject.SetActive(false);
+			Destroy(this.gameObject);
+			//this.gameObject.SetActive(false);
 
 
         }
