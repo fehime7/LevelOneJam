@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 	float camRayLenght = 100f;  //??
    
     private float time = 0;
-    private MonsterType currentType = MonsterType.Monster1;
+    public MonsterType currentType = MonsterType.Monster1;
     private GameObject[] models;
 
     void Awake() {
