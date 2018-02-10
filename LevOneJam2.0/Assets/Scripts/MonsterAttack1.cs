@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MonsterAttack1 : MonoBehaviour {
 
-		public float timeBetweenAttacks = 0.5f;
-		public int attackDamage = 10;
+		public float timeBetweenAttacks = 0.05f;
+		public int attackDamage = 1;
 
 
 		Animator anim;
@@ -51,6 +51,7 @@ public class MonsterAttack1 : MonoBehaviour {
 				{
 					gameObject.GetComponent<FadeAlpha>().kill();
 					Debug.Log("monster should die");
+					GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreManager>().score += attackDamage; 
 				}
 				//when the player should die
 				else /*if (((myType == MonsterType.Monster2) && (playerType == MonsterType.Monster1)) || ((myType == MonsterType.Monster1) && (playerType == MonsterType.Monster3)) || ((myType == MonsterType.Monster3) && (playerType == MonsterType.Monster2)))*/

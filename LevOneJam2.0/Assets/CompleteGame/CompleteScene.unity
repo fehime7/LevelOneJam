@@ -2688,8 +2688,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1.316362}
+  m_Center: {x: 0, y: 0, z: 0.158181}
 --- !u!33 &1666067145
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2707,9 +2707,10 @@ GameObject:
   - component: {fileID: 1683239780}
   - component: {fileID: 1683239782}
   - component: {fileID: 1683239781}
+  - component: {fileID: 1683239783}
   m_Layer: 5
   m_Name: Text
-  m_TagString: Untagged
+  m_TagString: Score
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2771,6 +2772,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1683239779}
+--- !u!114 &1683239783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1683239779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf5454a50e9584091a09ca20c0c85eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
 --- !u!1 &1882284760
 GameObject:
   m_ObjectHideFlags: 0
