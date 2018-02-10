@@ -35,7 +35,7 @@ public class MaskController : MonoBehaviour
 	void Spawn ()
 	{
 
-		int spawnPointIndex = Random.Range (0, spawnPoints.Length);
+		int spawnPointIndex = Random.Range (0, spawnPoints.Length+1);
 		maskIndex = Random.Range (0, mask.Length);
 
 
