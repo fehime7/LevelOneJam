@@ -39,22 +39,10 @@ public class MonsterAttack1 : MonoBehaviour {
 			Debug.Log("collision detected");
 
 			MonsterType playerType = other.gameObject.GetComponent<PlayerMovement>().currentType;
-			MonsterType myType = MonsterType.Monster1;
+			MonsterType myType = MonsterType.None;
+			myType = gameObject.GetComponent<MonsterMovement>().mType;
 
 			Debug.Log(playerType + "   " + myType);
-
-			if (gameObject.name == "Enemy1")
-			{
-				myType = MonsterType.Monster1;
-			}
-			else if (gameObject.name == "Enemy2")
-			{
-				myType = MonsterType.Monster2;
-			}
-			else if (gameObject.name == "Enemy3")
-			{
-				myType = MonsterType.Monster3;
-			}
 
 			//when the monster should die
 			if (myType != playerType)
