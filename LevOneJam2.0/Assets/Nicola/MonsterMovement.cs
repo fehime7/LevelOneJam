@@ -29,7 +29,7 @@ public class MonsterMovement : MonoBehaviour {
                 }
                 else if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().currentType == MonsterType.Monster2)
                 {
-                    Vector3 enemyDirection = -player.position;
+                    Vector3 enemyDirection = gameObject.transform.position - player.position;
                     nav.SetDestination(enemyDirection); // running away from player
                 }
                 break;
@@ -40,7 +40,7 @@ public class MonsterMovement : MonoBehaviour {
                 }
                 else if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().currentType == MonsterType.Monster3)
                 {
-                    Vector3 enemyDirection = -player.position;
+                    Vector3 enemyDirection = gameObject.transform.position - player.position;
                     nav.SetDestination(enemyDirection); // running away from player
                 }
                 break;
@@ -51,7 +51,7 @@ public class MonsterMovement : MonoBehaviour {
                 }
                 else if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().currentType == MonsterType.Monster1)
                 {
-                    Vector3 enemyDirection = -player.position;
+                    Vector3 enemyDirection = gameObject.transform.position-player.position;
                     nav.SetDestination(enemyDirection); // running away from player
                 }
                 break;
