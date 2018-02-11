@@ -9,6 +9,7 @@ public class MaskController : MonoBehaviour
 	public Transform[] spawnPoints;
 	public GameObject[] masksToRemove;
 	int maskIndex;
+	private bool[] isSpawned = { false,false,false};
 
 	void Start ()
 	{
@@ -39,7 +40,11 @@ public class MaskController : MonoBehaviour
 		//maskIndex = Random.Range (0, mask.Length);
 
 		//Instantiate (mask[maskIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-		Instantiate(mask[spawnPointIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+		if (!isSpawned[spawnPointIndex])
+		{
+			Instantiate(mask[spawnPointIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+			isSpawned[spawnPointIndex] = true;
+		}
 	}
 
 	void DeSpawn  () 
@@ -59,8 +64,9 @@ public class MaskController : MonoBehaviour
 			if (masksToRemove[i])
 			{
 				Destroy(masksToRemove[i]);
+				isSpawned[i] = false;
 			}
-		}
+		} 
 	}
 }
 
