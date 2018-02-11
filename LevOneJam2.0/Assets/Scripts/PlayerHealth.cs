@@ -63,6 +63,8 @@ public class PlayerHealth : MonoBehaviour
 
 	void Death()
 	{
+		gameObject.AddComponent<AudioSource>().PlayOneShot((AudioClip)Resources.Load("Audio/Sounds/203976__thatbennyguy__female-hurt"), 1.0f);
+
 		isDead = true;
 
 		//playerShooting.DisableEffects ();
@@ -74,6 +76,8 @@ public class PlayerHealth : MonoBehaviour
 
 		playerMovement.enabled = false;
 		//playerShooting.enabled = false;
+
+		Instantiate(Resources.Load("EnemyDeath"), gameObject.transform.position, Quaternion.Euler(Vector3.zero), null);
 	}
 
 

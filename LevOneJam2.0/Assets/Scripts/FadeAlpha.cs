@@ -28,6 +28,8 @@ using UnityEngine.SceneManagement;
 		{
 			startedFading = true;
 			StartCoroutine(FadeOut3D(this.transform, 0, true, 0.001f));
+			Instantiate(Resources.Load("EnemyDeath"), gameObject.transform.position, Quaternion.Euler(Vector3.zero), null);
+			//gameObject.AddComponent<AudioSource>().PlayOneShot((AudioClip)Resources.Load("Audio/Sounds/203976__thatbennyguy__female-hurt"), 1.0f);
 		}
 	}
 	public static IEnumerator FadeOut3D(Transform t, float targetAlpha, bool isVanish, float duration)
