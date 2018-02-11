@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 9fe749f44dfa9334d85eb68724458ba5
-timeCreated: 1518351161
+guid: 67a1eb640bd918f49b80fa916e37c930
+timeCreated: 1518354467
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: props
+    2100000: palette
     2300000: //RootNode
     3300000: //RootNode
-    4300000: potted_plant03
+    4300000: glass
   externalObjects: {}
   materials:
     importMaterials: 1
