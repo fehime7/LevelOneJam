@@ -4,11 +4,12 @@ public class MaskController : MonoBehaviour
 {
 	//public PlayerHealth playerHealth;
 	public GameObject[] mask;
-	private float spawnTime = 2f;
-	private float deSpawnTime = 10f;
+	private float spawnTime = 4f;
+	private float deSpawnTime = 8f;
 	public Transform[] spawnPoints;
 	public GameObject[] masksToRemove;
 	private bool[] isSpawned = { false,false,false};
+    private float timer = 0;
 
 	void Start ()
 	{
@@ -16,9 +17,14 @@ public class MaskController : MonoBehaviour
 		InvokeRepeating ("DeSpawn", deSpawnTime, deSpawnTime);
 	}
 
-	void Spawn ()
+    private void Update()
+    {
+        timer += Time.deltaTime;
+    }
+
+    void Spawn ()
 	{
-		int spawnPointIndex = Random.Range (0, spawnPoints.Length-1);
+		int spawnPointIndex = Random.Range (0, spawnPoints.Length);
 
 		if (!isSpawned[spawnPointIndex])
 		{
@@ -35,10 +41,13 @@ public class MaskController : MonoBehaviour
 			if (masksToRemove[i])
 			{
 				Destroy(masksToRemove[i]);
-				isSpawned[i] = false;
 			}
-		} 
-	}
+        }
+
+        isSpawned[0] = false;
+        isSpawned[1] = false;
+        isSpawned[2] = false;
+    }
 }
 
 
