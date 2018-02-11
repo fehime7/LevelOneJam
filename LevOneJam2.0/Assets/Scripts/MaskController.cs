@@ -4,7 +4,7 @@ public class MaskController : MonoBehaviour
 {
 	//public PlayerHealth playerHealth;
 	public GameObject[] mask;
-	private float spawnTime = 5f;
+	private float spawnTime = 4f;
 	private float deSpawnTime = 8f;
 	public Transform[] spawnPoints;
 	public GameObject[] masksToRemove;
