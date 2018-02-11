@@ -43,7 +43,7 @@ public class MonsterMovement : MonoBehaviour {
                     GameObject modelObj = reactionsTrans.GetChild(j).gameObject;
 
                     reactions[j] = modelObj;
-                    modelObj.SetActive(false);
+					modelObj.SetActive(false);
                 }
             }
         }
@@ -171,15 +171,34 @@ public class MonsterMovement : MonoBehaviour {
         if (positive)
         {
             reactions[0].SetActive(true);
-            reactions[1].SetActive(false);
+			reactions[1].SetActive(false);
+			yield return new WaitForSeconds(0.5f);
+			reactions[0].SetActive(false);
+			yield return new WaitForSeconds(0.5f);
+
+			if (playerDetected && (reactions[0] == true))
+			{
+				StartCoroutine(React(true));
+			}
         }
         else
         {
+			
             reactions[1].SetActive(true);
+
             reactions[0].SetActive(false);
+			yield return new WaitForSeconds(0.5f);
+			reactions[1].SetActive(false);
+
+			yield return new WaitForSeconds(0.5f);
+
+			if (playerDetected && (reactions[1]==true))
+			{
+				StartCoroutine(React(false));
+			}
         }
 
-        yield return new WaitForSeconds(2);
+        //yield return new WaitForSeconds(2);
 
         //if (positive) reactions[0].SetActive(false);
         //else reactions[1].SetActive(false);
