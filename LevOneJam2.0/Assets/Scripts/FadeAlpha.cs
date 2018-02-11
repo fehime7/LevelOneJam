@@ -8,14 +8,13 @@ using UnityEngine.SceneManagement;
 
     private bool startedFading = false;
     private MonsterManager monManager;
-	public AudioSource audioSource;
+	private AudioSource audioSource;
 	public AudioClip killSound;
 
     private void Start() {
         //test  		StartCoroutine(FadeOut3D(this.transform, 0, true, 1));
         monManager = (MonsterManager)FindObjectOfType(typeof(MonsterManager));
-		audioSource = (AudioSource)FindObjectOfType(typeof(AudioSource));
-
+		audioSource = GameObject.Find("Canvas").GetComponent<AudioSource>();
 	}
 
 	void Update()
@@ -26,8 +25,7 @@ using UnityEngine.SceneManagement;
 	}
 
 	public void kill() {
-        monManager.enemies.Remove(this.gameObject);
-		
+        monManager.enemies.Remove(this.gameObject);	
 
 		if (gameObject.active && !startedFading)
 		{
@@ -36,7 +34,8 @@ using UnityEngine.SceneManagement;
 			Instantiate(Resources.Load("EnemyDeath"), gameObject.transform.position, Quaternion.Euler(Vector3.zero), null);
 			//gameObject.AddComponent<AudioSource>().PlayOneShot((AudioClip)Resources.Load("Audio/Sounds/203976__thatbennyguy__female-hurt"), 1.0f);
 		}
-		//audioSource.PlayOneShot(killSound);
+
+        audioSource.PlayOneShot(killSound);
 	}
 	public static IEnumerator FadeOut3D(Transform t, float targetAlpha, bool isVanish, float duration)
 	{
