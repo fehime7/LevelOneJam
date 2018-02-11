@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterAttack1 : MonoBehaviour {
 
-		private float timeBetweenAttacks = 0.09f;
+		private float timeBetweenAttacks = 0.12f;
 		private int attackDamage = 1;
 
 

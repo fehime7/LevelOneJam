@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-	public int startingHealth = 50;
+	private int startingHealth = 50;
 	public int currentHealth;
 	public Slider healthSlider;
 	//public Image damageImage;
@@ -44,6 +44,7 @@ public class PlayerHealth : MonoBehaviour
 			//damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
 		}
 		damaged = false;
+		Debug.Log(currentHealth + "currentHealth");
 		healthSlider.value = currentHealth;
 	}
 
