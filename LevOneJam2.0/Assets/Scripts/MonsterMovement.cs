@@ -128,6 +128,7 @@ public class MonsterMovement : MonoBehaviour {
 		}
 
         timer += Time.deltaTime;
+        ChangeSpeed();
     }
 
 	private Vector3 getRandomPosition() {
@@ -219,5 +220,38 @@ public class MonsterMovement : MonoBehaviour {
 				}
 			}
 		}
+    }
+
+    void ChangeSpeed()
+    {
+        float k = 0;
+        float newSpeed = 0;
+
+        switch (mType)
+        {
+            case MonsterType.Monster1:
+                k = timer % 0.75f + 0.125f;
+
+                //Cubic InOut
+                if ((k *= 2f) < 1f) newSpeed = 0.5f * k * k * k;
+                else newSpeed = 0.5f * ((k -= 2f) * k * k + 2f);
+
+                newSpeed *= 5;
+                break;
+            case MonsterType.Monster2:
+                k = timer % 0.3f + 0.35f;
+
+                //Cubic InOut
+                if ((k *= 2f) < 1f) newSpeed = 0.5f * k * k * k;
+                else newSpeed = 0.5f * ((k -= 2f) * k * k + 2f);
+
+                newSpeed *= 5;
+                break;
+            case MonsterType.Monster3:
+                newSpeed = 3f;
+                break;
+        }
+
+        nav.speed = newSpeed;
     }
 }
