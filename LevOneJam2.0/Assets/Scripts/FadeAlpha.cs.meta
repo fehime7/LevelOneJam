@@ -1,11 +1,13 @@
 fileFormatVersion: 2
 guid: d228a5733c7edc44c99c2dfd55a68792
-timeCreated: 1518255640
+timeCreated: 1518351663
 licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - audioSource: {instanceID: 0}
+  - killSound: {fileID: 8300000, guid: 41a81933b4bfe49ad8d9009bf1441413, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
