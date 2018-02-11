@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MonsterAttack1 : MonoBehaviour {
 
-		public float timeBetweenAttacks = 0.05f;
-		public int attackDamage = 1;
+		private float timeBetweenAttacks = 0.09f;
+		private int attackDamage = 1;
 
 
 		Animator anim;
@@ -19,12 +19,12 @@ public class MonsterAttack1 : MonoBehaviour {
 		void Awake ()
 		{
 			player = GameObject.FindGameObjectWithTag ("Player");
-		if (player)
-		{
-			playerHealth = player.GetComponent<PlayerHealth>();
-		}
-		else {
-		}
+			if (player)
+				{
+					playerHealth = player.GetComponent<PlayerHealth>();
+				}
+			else {
+			}
 			//enemyHealth = GetComponent<EnemyHealth>();
 			//anim = GetComponent <Animator> ();
 		}

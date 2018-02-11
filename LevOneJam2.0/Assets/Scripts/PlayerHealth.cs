@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-	public int startingHealth = 5;
+	public int startingHealth = 50;
 	public int currentHealth;
 	public Slider healthSlider;
 	//public Image damageImage;
