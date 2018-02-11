@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public MonsterType currentType = MonsterType.None;
     private GameObject[] masks;
     private MonsterManager monManager;
+    private float timer = 0;
 
     void Awake() {
 		playerRigidBody = GetComponent <Rigidbody> ();
@@ -37,8 +38,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate () {
+        ChangeSpeed();
         Move();
         Turning();
+
+        timer += Time.deltaTime;
     }
 
 	void Move () {
@@ -102,8 +106,49 @@ public class PlayerMovement : MonoBehaviour
 
         foreach (GameObject monster in monManager.enemies)
         {
-            MonsterMovement monsMove = monster.GetComponent<MonsterMovement>();
             monster.GetComponent<MonsterMovement>().playerDetected = false;
         }
+    }
+
+    void ChangeSpeed()
+    {
+        //k = timer % 0.75f + 0.125f;
+        //k = timer % 0.5f + 0.25f;
+        //k = timer % 0.35f + 0.325f;
+        //k = timer % 0.3f + 0.35f;
+        //k = timer % 0.25f + 0.375f;
+        //k = timer % 0.2f + 0.4f;
+        float k = 0;
+        float newSpeed = 0;
+
+        switch(currentType)
+        {
+            case MonsterType.None:
+                newSpeed = 8;
+                break;
+            case MonsterType.Monster1:
+                k = timer % 0.75f + 0.125f;
+
+                //Cubic InOut
+                if ((k *= 2f) < 1f) newSpeed = 0.5f * k * k * k;
+                else newSpeed = 0.5f * ((k -= 2f) * k * k + 2f);
+
+                newSpeed *= 10;
+                break;
+            case MonsterType.Monster2:
+                k = timer % 0.3f + 0.35f;
+
+                //Cubic InOut
+                if ((k *= 2f) < 1f) newSpeed = 0.5f * k * k * k;
+                else newSpeed = 0.5f * ((k -= 2f) * k * k + 2f);
+
+                newSpeed *= 10;
+                break;
+            case MonsterType.Monster3:
+                newSpeed = 4.5f;
+                break;
+        }
+
+        speed = newSpeed;
     }
 }
