@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
 	//public float flashSpeed = 5f;
 	//public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
 
+	GameObject image;
 
 	//Animator anim;
 	//AudioSource playerAudio;
@@ -22,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
 	bool isDead;
 	bool damaged;
 
+	public Sprite mySprite;
 
 	void Awake()
 	{
@@ -30,6 +32,11 @@ public class PlayerHealth : MonoBehaviour
 		playerMovement = GetComponent<PlayerMovement>();
 		//playerShooting = GetComponentInChildren <PlayerShooting> ();
 		currentHealth = startingHealth;
+	}
+
+	void Start(){
+		image = GameObject.FindGameObjectWithTag("GameOver");
+		image.SetActive (false);
 	}
 
 
@@ -78,12 +85,16 @@ public class PlayerHealth : MonoBehaviour
 		playerMovement.enabled = false;
 		//playerShooting.enabled = false;
 
+
+		image.SetActive (true);
 		Instantiate(Resources.Load("EnemyDeath"), gameObject.transform.position, Quaternion.Euler(Vector3.zero), null);
+
 	}
 
 
 	public void RestartLevel()
 	{
-		SceneManager.LoadScene(0);
+		image.SetActive (false);
+		SceneManager.LoadScene(1);
 	}
 }
