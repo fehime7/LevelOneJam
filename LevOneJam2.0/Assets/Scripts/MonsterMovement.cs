@@ -248,10 +248,10 @@ public class MonsterMovement : MonoBehaviour {
                 newSpeed *= 5;
                 break;
             case MonsterType.Monster3:
-                newSpeed = 3f;
+                newSpeed = 4f;
                 break;
         }
 
-        nav.speed = newSpeed;
+        if (nav) nav.speed = newSpeed;
     }
 }
