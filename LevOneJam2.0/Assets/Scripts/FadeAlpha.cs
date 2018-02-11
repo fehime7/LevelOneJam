@@ -35,7 +35,7 @@ using UnityEngine.SceneManagement;
 			//gameObject.AddComponent<AudioSource>().PlayOneShot((AudioClip)Resources.Load("Audio/Sounds/203976__thatbennyguy__female-hurt"), 1.0f);
 		}
 
-        audioSource.PlayOneShot(killSound);
+        audioSource.PlayOneShot(killSound, 5);
 	}
 	public static IEnumerator FadeOut3D(Transform t, float targetAlpha, bool isVanish, float duration)
 	{

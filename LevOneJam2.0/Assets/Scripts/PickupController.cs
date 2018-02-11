@@ -16,7 +16,7 @@ public class PickupController : MonoBehaviour {
     {
         if (col.gameObject.name == "Player")
         {
-            audioS.PlayOneShot(pickUp);
+            audioS.PlayOneShot(pickUp, 20);
            
 			col.gameObject.GetComponent<PlayerMovement>().Mutate(mType);
 			Destroy(this.gameObject);
