@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private float speed = 10;
     public MonsterType currentType = MonsterType.None;
     private GameObject[] masks;
+    private MonsterManager monManager;
 
     void Awake() {
 		playerRigidBody = GetComponent <Rigidbody> ();
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        monManager = (MonsterManager)FindObjectOfType(typeof(MonsterManager));
         masks = new GameObject[System.Enum.GetValues(typeof(MonsterType)).Length-1];
 
         for (int i = 0; i < gameObject.transform.childCount; i++)
@@ -97,5 +99,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         currentType = monsterType;
+
+        foreach (GameObject monster in monManager.enemies)
+        {
+            MonsterMovement monsMove = monster.GetComponent<MonsterMovement>();
+            monster.GetComponent<MonsterMovement>().playerDetected = false;
+        }
     }
 }

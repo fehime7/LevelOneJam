@@ -6,7 +6,8 @@ public class MonsterMovement : MonoBehaviour {
 
     public MonsterType mType;
 
-    bool playerDetected = false;
+    public bool playerDetected = false;
+    private bool posReaction = true;
     Transform closestChar;
     Transform player;
     UnityEngine.AI.NavMeshAgent nav;
@@ -58,21 +59,21 @@ public class MonsterMovement : MonoBehaviour {
 
         if (closestChar)
 		{
-            MonsterType playerType = MonsterType.None;
+            MonsterType charType = MonsterType.None;
 
             if (closestChar.GetComponent<PlayerMovement>())
             {
-                playerType = closestChar.GetComponent<PlayerMovement>().currentType;
+                charType = closestChar.GetComponent<PlayerMovement>().currentType;
             } else if (closestChar.GetComponent<MonsterMovement>())
             {
-                playerType = closestChar.GetComponent<MonsterMovement>().mType;
+                charType = closestChar.GetComponent<MonsterMovement>().mType;
             }
 
-			float playerDistance = Vector3.Distance(gameObject.transform.position, closestChar.position);
+			float charDistance = Vector3.Distance(gameObject.transform.position, closestChar.position);
 
-			if (mType != playerType && playerDistance < detectDistance)
+			if (mType != charType && charDistance < detectDistance)
 			{
-                if (playerType == MonsterType.None)
+                if (charType == MonsterType.None)
                 {
                     Chase();
                 } else
@@ -80,31 +81,31 @@ public class MonsterMovement : MonoBehaviour {
                     switch (mType)
                     {
                         case MonsterType.Monster1:
-                            if (playerType == MonsterType.Monster3)
+                            if (charType == MonsterType.Monster3)
                             {
                                 Chase();
                             }
-                            else if (playerType == MonsterType.Monster2)
+                            else if (charType == MonsterType.Monster2)
                             {
                                 Avoid();
                             }
                             break;
                         case MonsterType.Monster2:
-                            if (playerType == MonsterType.Monster1)
+                            if (charType == MonsterType.Monster1)
                             {
                                 Chase();
                             }
-                            else if (playerType == MonsterType.Monster3)
+                            else if (charType == MonsterType.Monster3)
                             {
                                 Avoid();
                             }
                             break;
                         case MonsterType.Monster3:
-                            if (playerType == MonsterType.Monster2)
+                            if (charType == MonsterType.Monster2)
                             {
                                 Chase();
                             }
-                            else if (playerType == MonsterType.Monster1)
+                            else if (charType == MonsterType.Monster1)
                             {
                                 Avoid();
                             }
@@ -147,7 +148,7 @@ public class MonsterMovement : MonoBehaviour {
     {
         nav.SetDestination(closestChar.position);
         
-        if (!playerDetected)
+        if (closestChar == player && !playerDetected)
         {
             StartCoroutine(React(true));
             playerDetected = true;
@@ -159,7 +160,7 @@ public class MonsterMovement : MonoBehaviour {
         Vector3 enemyDirection = 2 * gameObject.transform.position - closestChar.position;
         nav.SetDestination(enemyDirection);
 
-        if (!playerDetected)
+        if (closestChar == player && !playerDetected)
         {
             StartCoroutine(React(false));
             playerDetected = true;
@@ -170,38 +171,33 @@ public class MonsterMovement : MonoBehaviour {
     {
         if (positive)
         {
+            posReaction = true;
             reactions[0].SetActive(true);
 			reactions[1].SetActive(false);
 			yield return new WaitForSeconds(0.5f);
 			reactions[0].SetActive(false);
 			yield return new WaitForSeconds(0.5f);
 
-			if (playerDetected && (reactions[0] == true))
+			if (playerDetected && posReaction)
 			{
 				StartCoroutine(React(true));
 			}
         }
         else
         {
-			
+            posReaction = false;
             reactions[1].SetActive(true);
-
             reactions[0].SetActive(false);
 			yield return new WaitForSeconds(0.5f);
 			reactions[1].SetActive(false);
 
 			yield return new WaitForSeconds(0.5f);
 
-			if (playerDetected && (reactions[1]==true))
+			if (playerDetected && !posReaction)
 			{
 				StartCoroutine(React(false));
 			}
         }
-
-        //yield return new WaitForSeconds(2);
-
-        //if (positive) reactions[0].SetActive(false);
-        //else reactions[1].SetActive(false);
     }
 
     void UpdateClosestChar()
@@ -210,11 +206,13 @@ public class MonsterMovement : MonoBehaviour {
 		{
 			float minDistance = Vector3.Distance(transform.position, player.position);
 			closestChar = player;
+            MonsterType playerType = player.gameObject.GetComponent<PlayerMovement>().currentType;
+
 			foreach (GameObject enemy in monManager.enemies)
 			{
 				float dist = Vector3.Distance(transform.position, enemy.transform.position);
 
-				if (dist < (minDistance - detectDistance))
+				if ((playerType != mType && dist < (minDistance - detectDistance)) || (playerType == mType && dist < minDistance))
 				{
 					minDistance = dist;
 					closestChar = enemy.transform;
