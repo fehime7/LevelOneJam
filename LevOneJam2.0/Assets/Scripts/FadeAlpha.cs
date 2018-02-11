@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 	public class FadeAlpha : MonoBehaviour
 	{
@@ -16,7 +17,7 @@ using UnityEngine;
 	void Update()
 	{
 		if(Input.GetKeyDown(KeyCode.Return))
-			Application.LoadLevel(0); //or whatever number your scene is
+			SceneManager.LoadScene(0); //or whatever number your scene is
 
 	}
 
