@@ -16,8 +16,8 @@ using UnityEngine.SceneManagement;
 
 	void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.Return))
-			SceneManager.LoadScene(0); //or whatever number your scene is
+		if(Input.GetKeyDown(KeyCode.Return)||Input.GetKeyDown(KeyCode.Space))
+			SceneManager.LoadScene(1);
 
 	}
 
