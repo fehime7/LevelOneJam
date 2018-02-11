@@ -317,8 +317,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b933b027212a954183806d9f0f7a414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenAttacks: 0.5
-  attackDamage: 10
 --- !u!114 &114576157382129688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -331,6 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mType: 1
+  playerDetected: 0
   randomTimerDelay: 3
   maxX: 25
   minX: -25
@@ -347,6 +346,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d228a5733c7edc44c99c2dfd55a68792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  killSound: {fileID: 8300000, guid: 41a81933b4bfe49ad8d9009bf1441413, type: 3}
 --- !u!136 &136336507174829222
 CapsuleCollider:
   m_ObjectHideFlags: 1

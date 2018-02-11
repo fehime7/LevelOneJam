@@ -142,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
                 if ((k *= 2f) < 1f) newSpeed = 0.5f * k * k * k;
                 else newSpeed = 0.5f * ((k -= 2f) * k * k + 2f);
 
-                newSpeed *= 8;
+                newSpeed *= 9;
                 break;
             case MonsterType.Monster3:
                 newSpeed = 4.5f;
