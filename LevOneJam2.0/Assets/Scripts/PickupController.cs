@@ -9,7 +9,7 @@ public class PickupController : MonoBehaviour {
 	private AudioSource audio;
 
 	void Start(){
-		audio = gameObject.AddComponent<AudioSource> ();
+		audio = transform.GetComponent<AudioSource>();
 	}
 
     void OnTriggerEnter(Collider col)
