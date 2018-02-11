@@ -133,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
                 if ((k *= 2f) < 1f) newSpeed = 0.5f * k * k * k;
                 else newSpeed = 0.5f * ((k -= 2f) * k * k + 2f);
 
-                newSpeed *= 10;
+                newSpeed *= 8;
                 break;
             case MonsterType.Monster2:
                 k = timer % 0.3f + 0.35f;
@@ -142,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
                 if ((k *= 2f) < 1f) newSpeed = 0.5f * k * k * k;
                 else newSpeed = 0.5f * ((k -= 2f) * k * k + 2f);
 
-                newSpeed *= 10;
+                newSpeed *= 8;
                 break;
             case MonsterType.Monster3:
                 newSpeed = 4.5f;

@@ -189,7 +189,6 @@ GameObject:
   - component: {fileID: 1112257484}
   - component: {fileID: 1112257483}
   - component: {fileID: 1112257482}
-  - component: {fileID: 1112257486}
   - component: {fileID: 1112257487}
   m_Layer: 5
   m_Name: Canvas
@@ -274,17 +273,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1112257486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1112257481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b66e1a1d8b6d041fc836d19ef49ed9c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &1112257487
 AudioSource:
   m_ObjectHideFlags: 0
@@ -456,6 +444,7 @@ GameObject:
   - component: {fileID: 1507578940}
   - component: {fileID: 1507578942}
   - component: {fileID: 1507578941}
+  - component: {fileID: 1507578943}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -514,6 +503,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1507578939}
+--- !u!114 &1507578943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1507578939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66e1a1d8b6d041fc836d19ef49ed9c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myImage: {fileID: 0}
 --- !u!1 &1524315284
 GameObject:
   m_ObjectHideFlags: 0
